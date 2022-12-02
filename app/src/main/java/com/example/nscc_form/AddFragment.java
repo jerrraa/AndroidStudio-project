@@ -14,9 +14,15 @@ import android.widget.Toast;
 import android.content.SharedPreferences;
 
 import com.example.nscc_form.databinding.FragmentAddBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AddFragment extends Fragment {
     FragmentAddBinding binding;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://androidproject-bb272-default-rtdb.firebaseio.com");
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,10 +51,27 @@ public class AddFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Data saved successfully", Toast.LENGTH_SHORT).show();
+                    //send data to firebase database
+                    databaseReference.child("user").child(phone1).child("firstname").setValue(firstname1);
+                    databaseReference.child("user").child(phone1).child("lastname").setValue(lastname1);
+                    databaseReference.child("user").child(phone1).child("email").setValue(email1);
+                    databaseReference.child("user").child(phone1).child("address").setValue(address1);
+
+                    clear();
+
+
+
 
                 }
             }
         });
         return root;
+    }
+    public void clear() {
+        binding.firstname.setText("");
+        binding.lastname.setText("");
+        binding.phone.setText("");
+        binding.email.setText("");
+        binding.address.setText("");
     }
 }
