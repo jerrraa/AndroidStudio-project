@@ -2,6 +2,7 @@ package com.example.nscc_form;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,20 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.content.SharedPreferences;
 
 import com.example.nscc_form.databinding.FragmentAddBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddFragment extends Fragment {
     FragmentAddBinding binding;
+
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://androidproject-bb272-default-rtdb.firebaseio.com");
-
-
-
+    DatabaseReference databaseReferenceEMAIL = FirebaseDatabase.getInstance().getReference().child("user");
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +37,9 @@ public class AddFragment extends Fragment {
         final EditText phone = binding.phone;
         final EditText email = binding.email;
         final EditText address = binding.address;
+        final EditText notes = binding.notes;
+
+
         final Button btnSubmit = binding.submit;
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -46,21 +50,38 @@ public class AddFragment extends Fragment {
                 String phone1 = phone.getText().toString();
                 String email1 = email.getText().toString();
                 String address1 = address.getText().toString();
-
-                if (firstname1.isEmpty() || lastname1.isEmpty() || phone1.isEmpty() || email1.isEmpty() || address1.isEmpty()) {
+                String notes1 = notes.getText().toString();
+                if (firstname1.isEmpty() ||  lastname1.isEmpty()  || phone1.isEmpty() || email1.isEmpty() || address1.isEmpty() || notes1.isEmpty()) {
                     Toast.makeText(getActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), "Data saved successfully", Toast.LENGTH_SHORT).show();
-                    //send data to firebase database
-                    databaseReference.child("user").child(phone1).child("firstname").setValue(firstname1);
-                    databaseReference.child("user").child(phone1).child("lastname").setValue(lastname1);
-                    databaseReference.child("user").child(phone1).child("email").setValue(email1);
-                    databaseReference.child("user").child(phone1).child("address").setValue(address1);
+                    if (phone1.length() != 10) {
+                        Toast.makeText(getActivity(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
+                    } else if (!email1.contains("@") || !email1.contains(".")) {
+                        Toast.makeText(getActivity(), "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                    } else {
+                        databaseReferenceEMAIL.addValueEventListener(new ValueEventListener() {
 
-                    clear();
-
-
-
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                //we use a for loop to check if the input email matches a email in the database
+                                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                    String compare = dataSnapshot.child("email").getValue().toString();
+                                    if (email1.equals(compare)) {
+                                        Toast.makeText(getActivity(), "Email already exists", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    };
+                                }
+                                UserInfo userInfo = new UserInfo(firstname1, lastname1, email1, phone1, address1, notes1);
+                                databaseReference.child("user").push().setValue(userInfo);
+                                Toast.makeText(getActivity(), "User added successfully", Toast.LENGTH_SHORT).show();
+                                clear();
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
 
                 }
             }
@@ -73,5 +94,6 @@ public class AddFragment extends Fragment {
         binding.phone.setText("");
         binding.email.setText("");
         binding.address.setText("");
+        binding.notes.setText("");
     }
 }
