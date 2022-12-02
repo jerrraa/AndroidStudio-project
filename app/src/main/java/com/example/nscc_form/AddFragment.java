@@ -58,9 +58,9 @@ public class AddFragment extends Fragment {
                 } else {
                     //more data validation on phone number and email address
                     if (phone1.length() != 10) {
-                        Toast.makeText(getActivity(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
+                        phone.setError("Phone number must be 10 digits");
                     } else if (!email1.contains("@") || !email1.contains(".")) {
-                        Toast.makeText(getActivity(), "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                        email.setError("Please enter a valid email address");
                     } else {
                         databaseReferenceEMAIL.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -69,9 +69,9 @@ public class AddFragment extends Fragment {
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     String compare = dataSnapshot.child("email").getValue().toString();
                                     if (email1.equals(compare)) {
-                                        Toast.makeText(getActivity(), "Email already exists", Toast.LENGTH_SHORT).show();
+                                        email.setError("Email already exists");
                                         return;
-                                    };
+                                    }
                                 }
                                 //insert data into the database after validation
                                 UserInfo userInfo = new UserInfo(firstname1, lastname1, email1, phone1, address1, notes1);
