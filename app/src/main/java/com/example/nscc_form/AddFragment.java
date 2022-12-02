@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AddFragment extends Fragment {
     FragmentAddBinding binding;
-
+    //firebase database
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://androidproject-bb272-default-rtdb.firebaseio.com");
     DatabaseReference databaseReferenceEMAIL = FirebaseDatabase.getInstance().getReference().child("user");
     @Override
@@ -32,6 +32,7 @@ public class AddFragment extends Fragment {
         binding = FragmentAddBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        //variable declarion from fragment
         final EditText firstname = binding.firstname;
         final EditText lastname = binding.lastname;
         final EditText phone = binding.phone;
@@ -51,16 +52,17 @@ public class AddFragment extends Fragment {
                 String email1 = email.getText().toString();
                 String address1 = address.getText().toString();
                 String notes1 = notes.getText().toString();
+                //checks if one of the fields are empty is one is true, throw error
                 if (firstname1.isEmpty() ||  lastname1.isEmpty()  || phone1.isEmpty() || email1.isEmpty() || address1.isEmpty() || notes1.isEmpty()) {
                     Toast.makeText(getActivity(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 } else {
+                    //more data validation on phone number and email address
                     if (phone1.length() != 10) {
                         Toast.makeText(getActivity(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
                     } else if (!email1.contains("@") || !email1.contains(".")) {
                         Toast.makeText(getActivity(), "Please enter a valid email address", Toast.LENGTH_SHORT).show();
                     } else {
                         databaseReferenceEMAIL.addValueEventListener(new ValueEventListener() {
-
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 //we use a for loop to check if the input email matches a email in the database
@@ -71,9 +73,11 @@ public class AddFragment extends Fragment {
                                         return;
                                     };
                                 }
+                                //insert data into the database after validation
                                 UserInfo userInfo = new UserInfo(firstname1, lastname1, email1, phone1, address1, notes1);
                                 databaseReference.child("user").push().setValue(userInfo);
                                 Toast.makeText(getActivity(), "User added successfully", Toast.LENGTH_SHORT).show();
+                                //clears all the fields after the data is inserted
                                 clear();
                             }
                             @Override
