@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nscc_form.databinding.FragmentAddBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,11 +76,18 @@ public class AddFragment extends Fragment {
                                     }
                                 }
                                 //insert data into the database after validation
-                                UserInfo userInfo = new UserInfo(firstname1, lastname1, email1, phone1, address1, notes1);
-                                databaseReference.child("user").push().setValue(userInfo);
-                                Toast.makeText(getActivity(), "User added successfully", Toast.LENGTH_SHORT).show();
-                                //clears all the fields after the data is inserted
-                                clear();
+                                UserData userData = new UserData();
+                                userData.setFname(firstname1); userData.setLname(lastname1); userData.setPhone(phone1);
+                                userData.setEmail(email1); userData.setAddress(address1); userData.setNotes(notes1);
+
+                                databaseReference.child("user").push().setValue(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(getActivity(), "User added successfully", Toast.LENGTH_SHORT).show();
+                                        //clears all the fields after the data is inserted
+                                        clear();
+                                    }
+                                });
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {

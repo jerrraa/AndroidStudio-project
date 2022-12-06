@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/textView"
@@ -26,6 +27,7 @@
             android:id="@+id/firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/white"
             android:ems="10"
@@ -102,10 +104,12 @@
             android:ems="10"
             android:maxLines="5"
             android:hint="Notes"
+            android:layout_marginTop="18dp"
             android:inputType="textMultiLine"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:gravity="top"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

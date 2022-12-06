@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginTop="10dp"
+    android:scrollbars="vertical"
+    android:layout_marginBottom="40dp"
+    app:cardCornerRadius="40dp">
+    <LinearLayout
+        android:background="@drawable/round"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+    <TextView
+        android:gravity="center"
+        android:id="@+id/recycle_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="First Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="4dp"
+        />
+    <TextView
+        android:gravity="center"
+        android:id="@+id/recycle_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="4dp"
+        />
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:id="@+id/recycle_email"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:layout_marginVertical="4dp"
+        />
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:id="@+id/recycle_phone"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:layout_marginVertical="4dp"
+        />
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:id="@+id/recycle_address"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="4dp"
+        />
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notes"
+        android:id="@+id/recycle_notes"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:layout_marginVertical="4dp"
+        />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

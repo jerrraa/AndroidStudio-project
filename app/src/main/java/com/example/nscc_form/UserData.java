@@ -1,6 +1,6 @@
 package com.example.nscc_form;
 
-public class UserInfo {
+public class UserData {
     private String fname;
     private String lname;
     private String email;
@@ -8,9 +8,8 @@ public class UserInfo {
     private String address;
     private String notes;
     //constructors
-    public UserInfo() {}
-
-    public UserInfo(String fname, String lname, String email, String phone, String address, String notes) {
+    public UserData(){}
+    public UserData(String fname, String lname, String email, String phone, String address, String notes) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
