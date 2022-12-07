@@ -66,7 +66,7 @@ public class ClientDetail extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClientDetail.this);
                 builder.setTitle("Delete");
-                builder.setMessage("Are you sure you want to delete this contact?");
+                builder.setMessage("You're about to delete data from the database, you sure you want to delete?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
