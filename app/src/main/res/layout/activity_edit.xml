@@ -11,6 +11,7 @@
         android:id="@+id/firstedit2"
         android:layout_width="236dp"
         android:layout_height="54dp"
+        android:gravity="center"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
@@ -24,9 +25,10 @@
         app:layout_constraintVertical_bias="0.124" />
 
     <EditText
+        android:gravity="center"
         android:id="@+id/emailedit2"
-        android:layout_width="236dp"
-        android:layout_height="54dp"
+        android:layout_width="364dp"
+        android:layout_height="53dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
@@ -37,10 +39,12 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.335" />
+        app:layout_constraintVertical_bias="0.335"
+        />
 
     <EditText
         android:id="@+id/lastedit2"
+        android:gravity="center"
         android:layout_width="236dp"
         android:layout_height="54dp"
         android:backgroundTint="#FFFFFF"
@@ -57,8 +61,8 @@
 
     <EditText
         android:id="@+id/addressedit2"
-        android:layout_width="236dp"
-        android:layout_height="54dp"
+        android:layout_width="363dp"
+        android:layout_height="50dp"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
@@ -69,9 +73,11 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintVertical_bias="0.555"
+        android:gravity="center"/>
 
     <EditText
+        android:gravity="center"
         android:id="@+id/phoneedit2"
         android:layout_width="236dp"
         android:layout_height="54dp"
@@ -95,6 +101,7 @@
         android:text="Edit Details"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -105,24 +112,24 @@
     <EditText
 
         android:id="@+id/editnotes"
-        android:layout_width="370dp"
-        android:layout_height="150dp"
+        android:layout_width="375dp"
+        android:layout_height="143dp"
         android:background="@drawable/round"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:gravity="top"
         android:hint="Notes"
         android:inputType="textMultiLine"
-        android:maxLines="5"
+        android:maxLines="3"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="17sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.802" />
+        app:layout_constraintVertical_bias="0.77" />
 
     <Button
         android:id="@+id/button"

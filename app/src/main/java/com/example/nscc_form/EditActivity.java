@@ -12,11 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
+
 public class EditActivity extends AppCompatActivity {
-    String fname,lname,email,phone,address;
+    String fname,lname,email,phone,address, notes;
     EditText editnotes, editfname, editlname, editemail, editphone, editaddress;
     String editintent;
     Button save;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +42,7 @@ public class EditActivity extends AppCompatActivity {
         phone = getIntent().getStringExtra("phone");
         address = getIntent().getStringExtra("address");
         editintent = getIntent().getStringExtra("notes");
-
+        notes = getIntent().getStringExtra("notes");
 
         editfname.setText(fname);
         editlname.setText(lname);
@@ -45,6 +50,7 @@ public class EditActivity extends AppCompatActivity {
         editphone.setText(phone);
         editaddress.setText(address);
         editnotes.setText(editintent);
+        editphone.setFocusable(false);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +64,16 @@ public class EditActivity extends AppCompatActivity {
                 intent.putExtra("phone",phone);
                 intent.putExtra("address",address);
                 intent.putExtra("notes",editintent);
+
+                UserData data = new UserData();
+                data.setFname(fname);
+                data.setLname(lname);
+                data.setEmail(email);
+                data.setPhone(phone);
+                data.setAddress(address);
+                data.setNotes(notes);
+
+                databaseReference.child(phone).setValue(data);
 
                 startActivity(intent);
             }

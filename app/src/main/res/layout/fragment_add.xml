@@ -19,9 +19,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="Add NSCC Contacts"
             android:textColor="#FFFFFF"
-            android:textSize="34sp" />
+            android:textSize="39sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/firstname"
@@ -96,21 +98,22 @@
 
         <EditText
 
-            android:background="@drawable/round"
             android:id="@+id/notes"
             android:layout_width="370dp"
             android:layout_height="150dp"
+            android:layout_marginTop="18dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/round"
             android:backgroundTint="@color/white"
             android:ems="10"
-            android:maxLines="5"
+            android:gravity="top"
             android:hint="Notes"
-            android:layout_marginTop="18dp"
             android:inputType="textMultiLine"
+            android:maxLines="3"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="17sp"
-            android:gravity="top"/>
+            android:textSize="20sp" />
+
         <Button
             android:gravity="center"
             android:background="@drawable/round"

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -46,6 +47,13 @@ public class ClientDetail extends AppCompatActivity {
         phoneedit = findViewById(R.id.phoneedit);
         addressedit = findViewById(R.id.addressedit);
         noteview = findViewById(R.id.notesview);
+
+        fnameedit.setFocusable(false);
+        lnameedit.setFocusable(false);
+        emailedit.setFocusable(false);
+        phoneedit.setFocusable(false);
+        addressedit.setFocusable(false);
+        noteview.setFocusable(false);
 
         delete = findViewById(R.id.deletebtn);
         edit = findViewById(R.id.editbtn);
@@ -92,7 +100,7 @@ public class ClientDetail extends AppCompatActivity {
                 // save to database
                 Toast.makeText(ClientDetail.this, "Saved your new notes!", Toast.LENGTH_SHORT).show();
                 notes = noteview.getText().toString();
-
+                databaseReference.child(phone).child("notes").setValue(notes);
 
 
             }
