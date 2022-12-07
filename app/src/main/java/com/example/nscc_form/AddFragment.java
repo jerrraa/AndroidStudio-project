@@ -79,8 +79,8 @@ public class AddFragment extends Fragment {
                                 UserData userData = new UserData();
                                 userData.setFname(firstname1); userData.setLname(lastname1); userData.setPhone(phone1);
                                 userData.setEmail(email1); userData.setAddress(address1); userData.setNotes(notes1);
-
-                                databaseReference.child("user").push().setValue(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("user");
+                               databaseReference.child("user").child(phone1).setValue(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         Toast.makeText(getActivity(), "User added successfully", Toast.LENGTH_SHORT).show();
@@ -101,6 +101,7 @@ public class AddFragment extends Fragment {
         });
         return root;
     }
+
     public void clear() {
         binding.firstname.setText("");
         binding.lastname.setText("");
