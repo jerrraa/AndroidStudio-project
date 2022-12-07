@@ -1,9 +1,11 @@
 package com.example.nscc_form;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +17,30 @@ public class ContactAdapter extends FirebaseRecyclerAdapter<UserData, ContactAda
         super(options);
     }
     @Override
-    protected void onBindViewHolder(@NonNull contactViewHolder holder, int position, @NonNull UserData model) {
-        holder.fname.setText(model.getFname());
-        holder.lname.setText(model.getLname());
-        holder.email.setText(model.getEmail());
-        holder.phone.setText(model.getPhone());
-        holder.address.setText(model.getAddress());
-        holder.notes.setText(model.getNotes());
+    protected void onBindViewHolder(@NonNull contactViewHolder holder, int position, @NonNull UserData data) {
+
+        holder.fname.setText(data.getFname());
+        holder.lname.setText(data.getLname());
+        holder.email.setText(data.getEmail());
+        holder.phone.setText(data.getPhone());
+        holder.address.setText(data.getAddress());
+        holder.notes.setText(data.getNotes());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //obtain data and redirect to clientdetail activity
+                Intent intent = new Intent(v.getContext(), ClientDetail.class);
+                Toast.makeText(v.getContext(), "Tapped on " + data.getFname() +" " + data.getLname(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("fname", data.getFname());
+                intent.putExtra("lname", data.getLname());
+                intent.putExtra("email", data.getEmail());
+                intent.putExtra("phone", data.getPhone());
+                intent.putExtra("address", data.getAddress());
+                intent.putExtra("notes", data.getNotes());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
     @NonNull
     @Override
@@ -30,7 +49,7 @@ public class ContactAdapter extends FirebaseRecyclerAdapter<UserData, ContactAda
         return new ContactAdapter.contactViewHolder(view);
     }
     class contactViewHolder extends RecyclerView.ViewHolder {
-        TextView fname, lname, email, phone, address, notes;
+        TextView fname,lname, email, phone, address, notes;
         public contactViewHolder(@NonNull View itemView) {
             super(itemView);
             fname = itemView.findViewById(R.id.recycle_fname);

@@ -20,6 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class ContactFragment extends Fragment {
     FragmentContactBinding binding;
@@ -35,7 +37,6 @@ public class ContactFragment extends Fragment {
         View root = binding.getRoot();
 
         recyclerView = binding.recyclerList;
-
         datareference = FirebaseDatabase.getInstance().getReference().child("user");
         // To display the Recycler view linearly
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

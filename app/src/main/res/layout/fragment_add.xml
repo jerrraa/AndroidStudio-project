@@ -95,11 +95,12 @@
             android:textSize="20sp" />
 
         <EditText
+
+            android:background="@drawable/round"
             android:id="@+id/notes"
             android:layout_width="370dp"
             android:layout_height="150dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/white"
             android:backgroundTint="@color/white"
             android:ems="10"
             android:maxLines="5"
@@ -111,6 +112,8 @@
             android:textSize="17sp"
             android:gravity="top"/>
         <Button
+            android:gravity="center"
+            android:background="@drawable/round"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"

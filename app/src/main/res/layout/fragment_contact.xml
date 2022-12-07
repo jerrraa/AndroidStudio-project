@@ -14,8 +14,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/title"
-            android:text="Notes"
+            android:text="Contacts"
             android:textSize="32sp"
+            android:fontFamily="sans-serif-smallcaps"
             android:textColor="@color/white"
             android:textStyle="bold">
         </TextView>
